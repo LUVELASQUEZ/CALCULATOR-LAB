@@ -53,10 +53,28 @@ with tabs[1]:
             intercepto = model.intercept_
             y_pred = model.predict(x)
             r2 = r2_score(y, y_pred)
-
+            
             st.success(f"**Ecuación de la recta:** A = {pendiente:.4f}·C + {intercepto:.4f}")
             st.success(f"**R² de la curva:** {r2:.4f}")
 
+            
+            import plotly.graph_objs as go
+
+            # Gráfica interactiva
+            fig = go.Figure()
+            fig.add_trace(go.Scatter(x=x.flatten(), y=y, mode='markers', name='Datos experimentales'))
+            fig.add_trace(go.Scatter(x=x.flatten(), y=y_pred, mode='lines', name='Recta de regresión'))
+            
+            fig.update_layout(
+                title="Curva de Calibración",
+                xaxis_title="Concentración",
+                yaxis_title="Absorbancia",
+                template="plotly_white"
+            )
+            
+            st.plotly_chart(fig, use_container_width=True)
+            
+            
             st.divider()
             st.markdown("2. Ingresa la absorbancia de la muestra:")
 
