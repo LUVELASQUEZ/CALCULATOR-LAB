@@ -19,7 +19,7 @@ with tabs[0]:
     st.markdown("Ingresa los datos de tu siembra microbiológica:")
 
     colonias = st.number_input("Número total de colonias contadas", min_value=0, step=1)
-    volumen = st.number_input("Volumen sembrado (mL)", min_value=0.0001, format="%.4f")
+    volumen = st.number_input("Volumen sembrado (mL)", min_value=0.1, format="%.4f")
     dilucion = st.text_input("Dilución utilizada (ejemplo: 10^-3)", value="10^-3")
 
     try:
