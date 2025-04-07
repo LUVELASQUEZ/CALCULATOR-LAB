@@ -22,6 +22,8 @@ if 'historial_ufc' not in st.session_state:
 tabs = st.tabs(["🦠 UFC/mL o g", "📊 Curva de calibración", "📁 Historial (ISO 17025) UFC"])
 
 # TAB 1: UFC
+
+# TAB 1: UFC
 with tabs[0]:
     st.header("🦠 Cálculo de UFC/mL o g")
     st.markdown("Ingresa los datos de tu siembra microbiológica:")
@@ -30,30 +32,29 @@ with tabs[0]:
     volumen = st.number_input("Volumen sembrado (mL)", min_value=0.1, format="%.4f")
     dilucion = st.text_input("Dilución utilizada (ejemplo: 10^-3)", value="10^-3")
 
-   if st.button("Calcular UFC"):
-       
-    try:
-        factor_dilucion = eval(dilucion.replace("^", "**"))
-        if colonias > 0 and volumen > 0:
-            ufc = colonias / (volumen * factor_dilucion)
-            st.success(f"Resultado: **{ufc:.2e} UFC/mL o g**")
+    if st.button("Calcular UFC"):
+        try:
+            factor_dilucion = eval(dilucion.replace("^", "**"))
+            if colonias > 0 and volumen > 0:
+                ufc = colonias / (volumen * factor_dilucion)
+                st.success(f"Resultado: **{ufc:.2e} UFC/mL o g**")
 
-            # Guardar en el historial
-            nuevo_registro = {
-                "Fecha": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "Colonias": colonias,
-                "Volumen (mL)": volumen,
-                "Dilución": dilucion,
-                "UFC/mL o g": f"{ufc:.2e}"
-            }
-            st.session_state['historial_ufc'] = pd.concat(
-                [st.session_state['historial_ufc'], pd.DataFrame([nuevo_registro])],
-                ignore_index=True
-            )
-        else:
-            st.warning("⚠️ Por favor, ingresa valores mayores a cero.")
-    except:
-        st.warning("⚠️ Revisa que el formato de dilución sea válido (ejemplo: 10^-3 o 1e-3).")
+                # Guardar en el historial
+                nuevo_registro = {
+                    "Fecha": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    "Colonias": colonias,
+                    "Volumen (mL)": volumen,
+                    "Dilución": dilucion,
+                    "UFC/mL o g": f"{ufc:.2e}"
+                }
+                st.session_state['historial_ufc'] = pd.concat(
+                    [st.session_state['historial_ufc'], pd.DataFrame([nuevo_registro])],
+                    ignore_index=True
+                )
+            else:
+                st.warning("⚠️ Por favor, ingresa valores mayores a cero.")
+        except:
+            st.warning("⚠️ Revisa que el formato de dilución sea válido (ejemplo: 10^-3 o 1e-3).")
 
 
 # TAB 2: CURVA DE CALIBRACIÓN
