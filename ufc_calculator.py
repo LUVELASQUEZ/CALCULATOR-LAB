@@ -19,7 +19,7 @@ if 'historial_ufc' not in st.session_state:
     ])
 
 # PESTAÑAS PARA SELECCIÓN DE CÁLCULO
-tabs = st.tabs(["🦠 UFC/mL o g", "📊 Curva de calibración", "📁 Historial (ISO 17025)"])
+tabs = st.tabs(["🦠 UFC/mL o g", "📊 Curva de calibración", "📁 Historial (ISO 17025) UFC"])
 
 # TAB 1: UFC
 with tabs[0]:
@@ -30,6 +30,8 @@ with tabs[0]:
     volumen = st.number_input("Volumen sembrado (mL)", min_value=0.1, format="%.4f")
     dilucion = st.text_input("Dilución utilizada (ejemplo: 10^-3)", value="10^-3")
 
+   if st.button("Calcular UFC"):
+       
     try:
         factor_dilucion = eval(dilucion.replace("^", "**"))
         if colonias > 0 and volumen > 0:
@@ -48,8 +50,11 @@ with tabs[0]:
                 [st.session_state['historial_ufc'], pd.DataFrame([nuevo_registro])],
                 ignore_index=True
             )
+        else:
+            st.warning("⚠️ Por favor, ingresa valores mayores a cero.")
     except:
         st.warning("⚠️ Revisa que el formato de dilución sea válido (ejemplo: 10^-3 o 1e-3).")
+
 
 # TAB 2: CURVA DE CALIBRACIÓN
 with tabs[1]:
@@ -91,11 +96,13 @@ with tabs[1]:
             st.markdown("2. Ingresa la absorbancia de la muestra:")
             absorbancia_muestra = st.number_input("Absorbancia de la muestra", min_value=0.0, format="%.4f")
 
-            if absorbancia_muestra:
+            if st.button("Calcular concentración"):
+            try:
                 concentracion_muestra = (absorbancia_muestra - intercepto) / pendiente
                 st.success(f"**Concentración estimada:** {concentracion_muestra:.4f} unidades")
-    except:
-        st.warning("⚠️ Revisa que los datos de concentración y absorbancia sean numéricos y estén bien separados por comas.")
+            except:
+                st.warning("⚠️ No se pudo calcular. Verifica que los datos de la curva sean correctos.")
+
 
 # TAB 3: HISTORIAL
 with tabs[2]:
