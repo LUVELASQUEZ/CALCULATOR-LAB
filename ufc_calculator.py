@@ -57,6 +57,7 @@ with tabs[0]:
             st.warning("⚠️ Revisa que el formato de dilución sea válido (ejemplo: 10^-3 o 1e-3).")
 
 
+
 # TAB 2: CURVA DE CALIBRACIÓN
 with tabs[1]:
     st.header("📊 Determinación de concentración por absorbancia")
@@ -98,11 +99,13 @@ with tabs[1]:
             absorbancia_muestra = st.number_input("Absorbancia de la muestra", min_value=0.0, format="%.4f")
 
             if st.button("Calcular concentración"):
-            try:
-                concentracion_muestra = (absorbancia_muestra - intercepto) / pendiente
-                st.success(f"**Concentración estimada:** {concentracion_muestra:.4f} unidades")
-            except:
-                st.warning("⚠️ No se pudo calcular. Verifica que los datos de la curva sean correctos.")
+                try:
+                    concentracion_muestra = (absorbancia_muestra - intercepto) / pendiente
+                    st.success(f"**Concentración estimada:** {concentracion_muestra:.4f} unidades")
+                except:
+                    st.warning("⚠️ No se pudo calcular. Verifica que los datos de la curva sean correctos.")
+    except:
+        st.warning("⚠️ Revisa el formato de los datos de concentración y absorbancia.")
 
 
 # TAB 3: HISTORIAL
