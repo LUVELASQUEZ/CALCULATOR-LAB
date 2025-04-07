@@ -59,6 +59,7 @@ with tabs[0]:
 
 
 # TAB 2: CURVA DE CALIBRACIÓN
+
 with tabs[1]:
     st.header("📊 Determinación de concentración por absorbancia")
     st.markdown("1. Ingresa los datos de tu curva de calibración:")
@@ -66,8 +67,8 @@ with tabs[1]:
     conc_input = st.text_area("**Concentraciones (mg/L o unidades apropiadas):**", value="0, 2, 4, 6, 8")
     abs_input = st.text_area("**Absorbancias correspondientes:**", value="0.05, 0.12, 0.23, 0.34, 0.45")
 
-    try:
-        if conc_input and abs_input:
+    if st.button("Calcular curva de calibración"):
+        try:
             x = np.array([float(i.strip()) for i in conc_input.split(",")]).reshape(-1, 1)
             y = np.array([float(i.strip()) for i in abs_input.split(",")])
 
@@ -81,6 +82,10 @@ with tabs[1]:
             st.success(f"**Ecuación de la recta:** A = {pendiente:.4f}·C + {intercepto:.4f}")
             st.success(f"**R² de la curva:** {r2:.4f}")
 
+            # Guardar valores de la curva en el estado para usarlos después
+            st.session_state['pendiente'] = pendiente
+            st.session_state['intercepto'] = intercepto
+
             # Gráfica interactiva
             fig = go.Figure()
             fig.add_trace(go.Scatter(x=x.flatten(), y=y, mode='markers', name='Datos experimentales'))
@@ -93,19 +98,36 @@ with tabs[1]:
                 template="plotly_white"
             )
             st.plotly_chart(fig, use_container_width=True)
+        except:
+            st.warning("⚠️ Revisa el formato de los datos. Usa números separados por comas.")
 
-            st.divider()
-            st.markdown("2. Ingresa la absorbancia de la muestra:")
-            absorbancia_muestra = st.number_input("Absorbancia de la muestra", min_value=0.0, format="%.4f")
+    st.divider()
+    st.markdown("2. Ingresa la absorbancia de la muestra para calcular su concentración:")
 
-            if st.button("Calcular concentración"):
-                try:
-                    concentracion_muestra = (absorbancia_muestra - intercepto) / pendiente
-                    st.success(f"**Concentración estimada:** {concentracion_muestra:.4f} unidades")
-                except:
-                    st.warning("⚠️ No se pudo calcular. Verifica que los datos de la curva sean correctos.")
-    except:
-        st.warning("⚠️ Revisa el formato de los datos de concentración y absorbancia.")
+    absorbancia_muestra = st.number_input("Absorbancia de la muestra", min_value=0.0, format="%.4f")
+
+    if st.button("Calcular concentración"):
+        if 'pendiente' in st.session_state and 'intercepto' in st.session_state:
+            try:
+                pendiente = st.session_state['pendiente']
+                intercepto = st.session_state['intercepto']
+                concentracion_muestra = (absorbancia_muestra - intercepto) / pendiente
+                st.success(f"**Concentración estimada:** {concentracion_muestra:.4f} unidades")
+
+                # Guardar en el historial
+                nuevo_resultado = {
+                    "Fecha": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    "Absorbancia muestra": absorbancia_muestra,
+                    "Concentración estimada": round(concentracion_muestra, 4)
+                }
+                st.session_state['historial_concentracion'] = pd.concat(
+                    [st.session_state['historial_concentracion'], pd.DataFrame([nuevo_resultado])],
+                    ignore_index=True
+                )
+            except:
+                st.warning("⚠️ Error al calcular la concentración. Verifica tus datos.")
+        else:
+            st.warning("⚠️ Primero debes calcular la curva de calibración.")
 
 
 # TAB 3: HISTORIAL
