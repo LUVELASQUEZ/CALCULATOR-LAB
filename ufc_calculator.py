@@ -19,7 +19,16 @@ if 'historial_ufc' not in st.session_state:
     ])
 
 # PESTAÑAS PARA SELECCIÓN DE CÁLCULO
-tabs = st.tabs(["🦠 UFC/mL o g", "📊 Curva de calibración", "📁 Historial (ISO 17025) UFC"])
+if 'historial_concentracion' not in st.session_state:
+    st.session_state['historial_concentracion'] = pd.DataFrame(columns=[
+        "Fecha", "Absorbancia muestra", "Concentración estimada"
+    ])
+
+tabs = st.tabs(["🦠 UFC/mL o g", 
+                "📊 Curva de calibración", 
+                "📁 Historial (ISO 17025) UFC",
+                "📁 Historial (ISO 17025) ABS",
+               ])
 
 # TAB 1: UFC
 
@@ -147,3 +156,24 @@ with tabs[2]:
         )
     else:
         st.info("Aún no hay cálculos registrados.")
+
+# TAB 4: Historial concentración por absorbancia
+with tabs[3]:
+    st.header("📁 Historial (ISO 17025) ABS")
+    st.markdown("Este historial contiene los cálculos de concentración realizados a partir de absorbancia de muestra.")
+    
+    df_abs = st.session_state['historial_concentracion']
+
+    if not df_abs.empty:
+        st.dataframe(df_abs, use_container_width=True)
+
+        # Botón de descarga
+        csv = df_abs.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="📥 Descargar historial en CSV",
+            data=csv,
+            file_name="historial_concentracion_abs.csv",
+            mime='text/csv'
+        )
+    else:
+        st.info("📭 Aún no se ha registrado ningún cálculo.")
