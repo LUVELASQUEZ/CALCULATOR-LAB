@@ -9,25 +9,27 @@ import plotly.graph_objs as go
 st.set_page_config(page_title="Cálculos para Laboratorio", layout="centered")
 
 # DESCRIPCIÓN 
-st.markdown("### 🧾 Acerca de esta aplicación")
+st.markdown("### 👋 Bienvenido/a")
 
-with st.expander("Ver descripción del proyecto"):
+with st.expander("Conoce más sobre esta aplicación"):
     st.markdown("""
-    Esta aplicación web fue desarrollada como una herramienta de apoyo para cálculos rutinarios en laboratorios microbiológicos y químicos, 
-    con énfasis en la trazabilidad de datos y buenas prácticas de laboratorio bajo lineamientos de la norma **ISO/IEC 17025**.
+    Hola, soy **Luisa**, microbióloga industrial, y desarrollé esta aplicación como una herramienta sencilla de apoyo para cálculos comunes en el laboratorio,
+    como el conteo de UFC y la determinación de concentraciones a partir de curvas de calibración por absorbancia.
 
-    El objetivo principal es facilitar cálculos como:
-    - Determinación de **UFC/mL o g**
-    - Estimación de **concentraciones a partir de curvas de calibración por absorbancia**
+    Más allá de facilitar cálculos, el objetivo principal de esta aplicación fue **poner en práctica y fortalecer mis conocimientos en herramientas tecnológicas**,
+    entendiendo la importancia que tienen los **sistemas LIMS** en la gestión de datos, la trazabilidad y la calidad de la información en un laboratorio.
 
-    garantizando consistencia, reducción de errores manuales y registro automático de resultados.
+    Con esta aplicación también busco demostrar que, **entendiendo conceptos básicos de tecnología y programación**, es posible
+    **facilitar el acceso, el alcance y la interpretación de los datos científicos**, permitiendo que más personas puedan comprender
+    y trabajar con la información de forma clara, ordenada y confiable.
 
-    El desarrollo de la aplicación se realizó utilizando **Python** y el framework **Streamlit**, integrando conceptos básicos de programación,
-    análisis de datos y visualización. Durante el proceso se empleó **inteligencia artificial** como apoyo para la estructuración del código,
-    validación lógica de los cálculos y mejora progresiva de la interfaz, bajo un enfoque de **mejora continua y excelencia operativa**.
+    El desarrollo se realizó utilizando **Python y Streamlit**, y estuvo acompañado por el uso de **inteligencia artificial como apoyo**,
+    tanto para la estructuración del código como para la validación lógica de los cálculos y la mejora progresiva de la aplicación.
 
-    Esta herramienta funciona como un **prototipo funcional tipo LIMS ligero**, demostrando habilidades en gestión de datos analíticos,
-    trazabilidad, validación de resultados y digitalización de procesos de laboratorio.
+    Este proyecto representa un ejercicio práctico de integración entre ciencia, tecnología y gestión de datos,
+    con un enfoque en buenas prácticas de laboratorio y trazabilidad, alineado con los principios de la norma **ISO/IEC 17025**.
+    
+    Gracias por usar esta aplicación y ser parte de este ejercicio de ciencia, datos y tecnología 😘😘😘.
     """)
 
 # TÍTULO PRINCIPAL
