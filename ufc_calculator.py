@@ -171,6 +171,32 @@ with tabs[2]:
     st.header("🌱 Interpretación microbiológica de suelo (Agro)")
     st.markdown("Esta sección ofrece una interpretación orientativa de resultados microbiológicos de suelo.")
 
+    # Entrada de resultados microbiológicos de suelo
+hongos = st.number_input("Hongos y levaduras (UFC/g)", min_value=0.0, format="%.2e")
+actinomicetos = st.number_input("Actinomicetos (UFC/g)", min_value=0.0, format="%.2e")
+bacterias_n = st.number_input("Bacterias fijadoras de N (UFC/g)", min_value=0.0, format="%.2e")
+bacterias_totales = st.number_input("Bacterias totales (UFC/g)", min_value=0.0, format="%.2e")
+ph = st.number_input("pH del suelo", min_value=0.0, max_value=14.0, format="%.2f")
+
+    # Botón de evaluación
+if st.button("Evaluar resultados"):
+    st.subheader("📋 Evaluación automática por parámetro")
+
+    emoji_h, resultado_h = evaluar_parametro(hongos, REFERENCIAS_SUELO["hongos"])
+    st.write(f"{emoji_h} **Hongos y levaduras:** {resultado_h}")
+
+    emoji_a, resultado_a = evaluar_parametro(actinomicetos, REFERENCIAS_SUELO["actinomicetos"])
+    st.write(f"{emoji_a} **Actinomicetos:** {resultado_a}")
+
+    emoji_n, resultado_n = evaluar_parametro(bacterias_n, REFERENCIAS_SUELO["bacterias_n"])
+    st.write(f"{emoji_n} **Bacterias fijadoras de N:** {resultado_n}")
+
+    emoji_bt, resultado_bt = evaluar_parametro(bacterias_totales, REFERENCIAS_SUELO["bacterias_totales"])
+    st.write(f"{emoji_bt} **Bacterias totales:** {resultado_bt}")
+
+    emoji_ph, resultado_ph = evaluar_ph(ph)
+    st.write(f"{emoji_ph} **pH del suelo:** {resultado_ph}")
+
 # TAB 4: HISTORIAL UFC
 with tabs[3]:
     st.header("📁 Historial de datos (ISO 17025)")
@@ -208,4 +234,4 @@ with tabs[4]:
             mime='text/csv'
         )
     else:
-        st.info("📭 Aún no se ha registrado ningún cálculo.")
+        st.info("Aún no se ha registrado ningún cálculo.")
