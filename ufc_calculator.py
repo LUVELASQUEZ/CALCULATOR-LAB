@@ -172,11 +172,11 @@ with tabs[2]:
     st.markdown("Esta sección ofrece una interpretación orientativa de resultados microbiológicos de suelo.")
 
     # Entrada de resultados microbiológicos de suelo
-hongos = st.number_input("Hongos y levaduras (UFC/g)", min_value=0.0, format="%.2e")
-actinomicetos = st.number_input("Actinomicetos (UFC/g)", min_value=0.0, format="%.2e")
-bacterias_n = st.number_input("Bacterias fijadoras de N (UFC/g)", min_value=0.0, format="%.2e")
-bacterias_totales = st.number_input("Bacterias totales (UFC/g)", min_value=0.0, format="%.2e")
-ph = st.number_input("pH del suelo", min_value=0.0, max_value=14.0, format="%.2f")
+    hongos = st.number_input("Hongos y levaduras (UFC/g)", min_value=0.0, format="%.2e")
+    actinomicetos = st.number_input("Actinomicetos (UFC/g)", min_value=0.0, format="%.2e")
+    bacterias_n = st.number_input("Bacterias fijadoras de N (UFC/g)", min_value=0.0, format="%.2e")
+    bacterias_totales = st.number_input("Bacterias totales (UFC/g)", min_value=0.0, format="%.2e")
+    ph = st.number_input("pH del suelo", min_value=0.0, max_value=14.0, format="%.2f")
 
     # Botón de evaluación
 if st.button("Evaluar resultados"):
