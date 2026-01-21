@@ -193,22 +193,22 @@ with tabs[2]:
 
     # Botón de evaluación
     if st.button("Evaluar resultados"):
-    st.subheader("📋 Evaluación automática por parámetro")
+        st.subheader("📋 Evaluación automática por parámetro")
 
-    emoji_h, resultado_h = evaluar_parametro(hongos, REFERENCIAS_SUELO["hongos"])
-    st.write(f"{emoji_h} **Hongos y levaduras:** {resultado_h}")
+        emoji_h, resultado_h = evaluar_parametro(hongos, REFERENCIAS_SUELO["hongos"])
+        st.write(f"{emoji_h} **Hongos y levaduras:** {resultado_h}")
 
-    emoji_a, resultado_a = evaluar_parametro(actinomicetos, REFERENCIAS_SUELO["actinomicetos"])
-    st.write(f"{emoji_a} **Actinomicetos:** {resultado_a}")
+        emoji_a, resultado_a = evaluar_parametro(actinomicetos, REFERENCIAS_SUELO["actinomicetos"])
+        st.write(f"{emoji_a} **Actinomicetos:** {resultado_a}")
 
-    emoji_n, resultado_n = evaluar_parametro(bacterias_n, REFERENCIAS_SUELO["bacterias_n"])
-    st.write(f"{emoji_n} **Bacterias fijadoras de N:** {resultado_n}")
+        emoji_n, resultado_n = evaluar_parametro(bacterias_n, REFERENCIAS_SUELO["bacterias_n"])
+        st.write(f"{emoji_n} **Bacterias fijadoras de N:** {resultado_n}")
 
-    emoji_bt, resultado_bt = evaluar_parametro(bacterias_totales, REFERENCIAS_SUELO["bacterias_totales"])
-    st.write(f"{emoji_bt} **Bacterias totales:** {resultado_bt}")
+        emoji_bt, resultado_bt = evaluar_parametro(bacterias_totales, REFERENCIAS_SUELO["bacterias_totales"])
+        st.write(f"{emoji_bt} **Bacterias totales:** {resultado_bt}")
 
-    emoji_ph, resultado_ph = evaluar_ph(ph)
-    st.write(f"{emoji_ph} **pH del suelo:** {resultado_ph}")
+        emoji_ph, resultado_ph = evaluar_ph(ph)
+        st.write(f"{emoji_ph} **pH del suelo:** {resultado_ph}")
 
 # TAB 4: HISTORIAL UFC
 with tabs[3]:
