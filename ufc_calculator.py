@@ -189,7 +189,7 @@ with tabs[1]:
 # TAB 3: INTERPRETACION SUELO
 with tabs[2]:
     st.header("🌱 Interpretación microbiológica de suelo (Agro)")
-    st.markdown("Esta sección ofrece una interpretación orientativa de resultados microbiológicos de suelo.")
+    st.markdown("Esta sección ofrece una interpretación orientativa de resultados microbiológicos de suelo. **(🚧 Aún esta en evaluación)**")
 
     # Rangos de referencia microbiológicos para suelo agrícola
     RANGOS_SUELO = {
@@ -261,7 +261,7 @@ with tabs[3]:
     else:
         st.info("Aún no hay cálculos registrados.")
 
-# TAB 4: HISTORIAL ABS
+# TAB 5: HISTORIAL ABS
 with tabs[4]:
     st.header("📁 Historial (ISO 17025) ABS")
     st.markdown("Este historial contiene los cálculos de concentración realizados a partir de absorbancia de muestra.")
@@ -281,3 +281,8 @@ with tabs[4]:
         )
     else:
         st.info("Aún no se ha registrado ningún cálculo.")
+
+# TAB 6: HISTORIAL ABS
+with tabs[5]:
+    st.header("📁 Historial (ISO 17025) SUELO")
+    st.markdown("Este historial contiene las interpretaciones realizadas a partir de los resultados microbiologicos del suelo. **(🚧 Aún esta en evaluación)**"
