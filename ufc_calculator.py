@@ -50,9 +50,11 @@ if 'historial_concentracion' not in st.session_state:
     ])
 
 tabs = st.tabs(["🦠 UFC/mL o g", 
-                "📊 Curva de calibración", 
+                "📊 Curva de calibración",
+                "🌱 Interpretación microbiológica de suelo",
                 "📁 Historial (ISO 17025) UFC",
                 "📁 Historial (ISO 17025) ABS",
+                "📁 Historial (ISO 17025) INTERPRETACIÓN SUELO"
                ])
 
 # TAB 1: UFC
@@ -164,8 +166,13 @@ with tabs[1]:
             st.warning("⚠️ Primero debes calcular la curva de calibración.")
 
 
-# TAB 3: HISTORIAL
+# TAB 3: INTERPRETACION SUELO
 with tabs[2]:
+    st.header("🌱 Interpretación microbiológica de suelo (Agro)")
+    st.markdown("Esta sección ofrece una interpretación orientativa de resultados microbiológicos de suelo.")
+
+# TAB 4: HISTORIAL UFC
+with tabs[3]:
     st.header("📁 Historial de datos (ISO 17025)")
     st.markdown("Aquí encontrarás el historial de tus cálculos microbiológicos (UFC):")
 
@@ -182,8 +189,8 @@ with tabs[2]:
     else:
         st.info("Aún no hay cálculos registrados.")
 
-# TAB 4: Historial concentración por absorbancia
-with tabs[3]:
+# TAB 4: HISTORIAL ABS
+with tabs[4]:
     st.header("📁 Historial (ISO 17025) ABS")
     st.markdown("Este historial contiene los cálculos de concentración realizados a partir de absorbancia de muestra.")
     
