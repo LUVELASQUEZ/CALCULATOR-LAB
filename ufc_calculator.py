@@ -9,10 +9,10 @@ import plotly.graph_objs as go
 # -------------------------------
 # FUNCIONES PARA SUELO 
 # -------------------------------
-def evaluar_parametro(valor, referencia):
-    if valor >= referencia:
+def evaluar_parametro(valor, rangos):
+    if valor >= rangos["conforme"]:
         return "🟢", "CONFORME"
-    elif valor >= referencia * 0.5:
+    elif rangos["bajo"] <= valor < rangos["conforme"]:
         return "🟡", "BAJO"
     else:
         return "🔴", "MUY BAJO"
@@ -191,12 +191,24 @@ with tabs[2]:
     st.header("🌱 Interpretación microbiológica de suelo (Agro)")
     st.markdown("Esta sección ofrece una interpretación orientativa de resultados microbiológicos de suelo.")
 
-    # Referencias microbiológicas y clave de evaluación para suelo agrícola
-    REFERENCIAS_SUELO = {
-    "hongos": 1e4,            # UFC/g
-    "actinomicetos": 1e4,     # UFC/g
-    "bacterias_n": 1e3,       # UFC/g
-    "bacterias_totales": 1e6 # UFC/g
+    # Rangos de referencia microbiológicos para suelo agrícola
+    RANGOS_SUELO = {
+        "hongos": {
+            "conforme": 1e4,
+            "bajo": 1e3
+        },
+        "actinomicetos": {
+            "conforme": 1e4,
+            "bajo": 1e3
+        },
+        "bacterias_n": {
+            "conforme": 1e3,
+            "bajo": 1e2
+        },
+        "bacterias_totales": {
+            "conforme": 1e6,
+            "bajo": 1e5
+        }
     }
 
     CLAVE_EVALUACION = {
@@ -216,16 +228,16 @@ with tabs[2]:
     if st.button("Evaluar resultados"):
         st.subheader("📋 Evaluación automática por parámetro")
 
-        emoji_h, resultado_h = evaluar_parametro(hongos, REFERENCIAS_SUELO["hongos"])
+        emoji_h, resultado_h = evaluar_parametro(hongos, RANGOS_SUELO["hongos"])
         st.write(f"{emoji_h} **Hongos y levaduras:** {resultado_h}")
 
-        emoji_a, resultado_a = evaluar_parametro(actinomicetos, REFERENCIAS_SUELO["actinomicetos"])
+        emoji_a, resultado_a = evaluar_parametro(actinomicetos, RANGOS_SUELO["actinomicetos"])
         st.write(f"{emoji_a} **Actinomicetos:** {resultado_a}")
 
-        emoji_n, resultado_n = evaluar_parametro(bacterias_n, REFERENCIAS_SUELO["bacterias_n"])
+        emoji_n, resultado_n = evaluar_parametro(bacterias_n, RANGOS_SUELO["bacterias_n"])
         st.write(f"{emoji_n} **Bacterias fijadoras de N:** {resultado_n}")
 
-        emoji_bt, resultado_bt = evaluar_parametro(bacterias_totales, REFERENCIAS_SUELO["bacterias_totales"])
+        emoji_bt, resultado_bt = evaluar_parametro(bacterias_totales, RANGOS_SUELO["bacterias_totales"])
         st.write(f"{emoji_bt} **Bacterias totales:** {resultado_bt}")
 
         emoji_ph, resultado_ph = evaluar_ph(ph)
