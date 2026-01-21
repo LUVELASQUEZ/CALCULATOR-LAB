@@ -6,6 +6,27 @@ from sklearn.metrics import r2_score
 from datetime import datetime
 import plotly.graph_objs as go
 
+# -------------------------------
+# FUNCIONES PARA SUELO 
+# -------------------------------
+def evaluar_parametro(valor, referencia):
+    if valor >= referencia:
+        return "🟢", "CONFORME"
+    elif valor >= referencia * 0.5:
+        return "🟡", "BAJO"
+    else:
+        return "🔴", "MUY BAJO"
+
+
+def evaluar_ph(ph):
+    if 5.5 <= ph <= 7.5:
+        return "🟢", f"Óptimo ({ph})"
+    elif ph < 5.5:
+        return "🔴", f"Ácido ({ph})"
+    else:
+        return "🔴", f"Alcalino ({ph})"
+
+
 st.set_page_config(page_title="Cálculos para Laboratorio", layout="centered")
 
 # DESCRIPCIÓN 
