@@ -8,9 +8,30 @@ import plotly.graph_objs as go
 
 st.set_page_config(page_title="Cálculos para Laboratorio", layout="centered")
 
+# DESCRIPCIÓN 
+st.markdown("### 🧾 Acerca de esta aplicación")
+
+with st.expander("Ver descripción del proyecto"):
+    st.markdown("""
+    Esta aplicación web fue desarrollada como una herramienta de apoyo para cálculos rutinarios en laboratorios microbiológicos y químicos, 
+    con énfasis en la trazabilidad de datos y buenas prácticas de laboratorio bajo lineamientos de la norma **ISO/IEC 17025**.
+
+    El objetivo principal es facilitar cálculos como:
+    - Determinación de **UFC/mL o g**
+    - Estimación de **concentraciones a partir de curvas de calibración por absorbancia**
+
+    garantizando consistencia, reducción de errores manuales y registro automático de resultados.
+
+    El desarrollo de la aplicación se realizó utilizando **Python** y el framework **Streamlit**, integrando conceptos básicos de programación,
+    análisis de datos y visualización. Durante el proceso se empleó **inteligencia artificial** como apoyo para la estructuración del código,
+    validación lógica de los cálculos y mejora progresiva de la interfaz, bajo un enfoque de **mejora continua y excelencia operativa**.
+
+    Esta herramienta funciona como un **prototipo funcional tipo LIMS ligero**, demostrando habilidades en gestión de datos analíticos,
+    trazabilidad, validación de resultados y digitalización de procesos de laboratorio.
+    """)
+
 # TÍTULO PRINCIPAL
 st.title("🧪 CÁLCULOS PARA LABORATORIO")
-st.markdown("Herramienta para apoyar los cálculos en microbiología y química básica del laboratorio agrícola.")
 st.markdown("Herramienta para apoyar los cálculos en microbiología y química básica del laboratorio agrícola.")
 
 
