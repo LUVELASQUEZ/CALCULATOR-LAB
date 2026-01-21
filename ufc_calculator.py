@@ -11,6 +11,8 @@ st.set_page_config(page_title="Cálculos para Laboratorio", layout="centered")
 # TÍTULO PRINCIPAL
 st.title("🧪 CÁLCULOS PARA LABORATORIO")
 st.markdown("Herramienta para apoyar los cálculos en microbiología y química básica del laboratorio agrícola.")
+st.markdown("Herramienta para apoyar los cálculos en microbiología y química básica del laboratorio agrícola.")
+
 
 # Inicializar historial en la sesión
 if 'historial_ufc' not in st.session_state:
