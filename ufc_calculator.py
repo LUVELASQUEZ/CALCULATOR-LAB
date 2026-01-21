@@ -282,7 +282,7 @@ with tabs[4]:
     else:
         st.info("Aún no se ha registrado ningún cálculo.")
 
-# TAB 6: HISTORIAL ABS
+# TAB 6: HISTORIAL SUELO
 with tabs[5]:
     st.header("📁 Historial (ISO 17025) SUELO")
-    st.markdown("Este historial contiene las interpretaciones realizadas a partir de los resultados microbiologicos del suelo. **(🚧 Aún esta en evaluación)**"
+    st.markdown("Este historial contiene las interpretaciones realizadas a partir de los resultados microbiologicos del suelo. **(🚧 Aún esta en evaluación)**")
