@@ -192,7 +192,7 @@ with tabs[2]:
     ph = st.number_input("pH del suelo", min_value=0.0, max_value=14.0, format="%.2f")
 
     # Botón de evaluación
-if st.button("Evaluar resultados"):
+    if st.button("Evaluar resultados"):
     st.subheader("📋 Evaluación automática por parámetro")
 
     emoji_h, resultado_h = evaluar_parametro(hongos, REFERENCIAS_SUELO["hongos"])
