@@ -57,7 +57,6 @@ tabs = st.tabs(["🦠 UFC/mL o g",
                 "📁 Historial (ISO 17025) INTERPRETACIÓN SUELO"
                ])
 
-# TAB 1: UFC
 
 # TAB 1: UFC
 with tabs[0]:
@@ -170,6 +169,20 @@ with tabs[1]:
 with tabs[2]:
     st.header("🌱 Interpretación microbiológica de suelo (Agro)")
     st.markdown("Esta sección ofrece una interpretación orientativa de resultados microbiológicos de suelo.")
+
+    # Referencias microbiológicas y clave de evaluación para suelo agrícola
+    REFERENCIAS_SUELO = {
+    "hongos": 1e4,            # UFC/g
+    "actinomicetos": 1e4,     # UFC/g
+    "bacterias_n": 1e3,       # UFC/g
+    "bacterias_totales": 1e6 # UFC/g
+    }
+
+    CLAVE_EVALUACION = {
+    "CONFORME": "🟢",
+    "BAJO": "🟡",
+    "MUY BAJO": "🔴"
+    }
 
     # Entrada de resultados microbiológicos de suelo
     hongos = st.number_input("Hongos y levaduras (UFC/g)", min_value=0.0, format="%.2e")
